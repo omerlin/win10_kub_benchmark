@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "warp10-demo.fullname" . }}-statefullset
+  labels:
+    {{- include "warp10-demo.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  serviceName: {{ include "warp10-demo.fullname" . }}
+  selector:
+    matchLabels:
+      {{- include "warp10-demo.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "warp10-demo.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "warp10-demo.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            - name: studio
+              containerPort: 8081
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+          - name: data
+            mountPath: /data
+          env:
+          - name: warpscript.maxops
+            value: "200000000"
+          - name: warpscript.maxops.hard
+            value: "200000000"
+          - name: warpscript.maxdepth
+            value: "10000"
+          - name: warpscript.maxdepth.hard
+            value: "20000"
+          - name: warpscript.maxfetch
+            value: "10000000"
+          - name: warpscript.maxfetch.hard
+            value: "10000000"
+          - name: warpscript.maxgts
+            value: "1000000"
+          - name: warpscript.maxgts.hard
+            value: "1000000"
+          - name: warpscript.maxloop
+            value: "1000000"
+          - name: WARP10_HEAP
+            value: "8g"
+          - name: WARP10_HEAP_MAX
+            value: "8g"
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "hostpath"
+      resources:
+        requests:
+          storage: 200Gi

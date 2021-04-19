@@ -1,0 +1,16 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: {{ include "warp10-demo.fullname" . }}-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 150Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/warp10/data" 
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: warp10-demo-local-storage

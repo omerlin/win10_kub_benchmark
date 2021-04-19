@@ -1,0 +1,56 @@
+<%
+  // Macro's documentation
+  {
+    'name' 'Requeteur/mod1_req'
+    'desc' // Description
+      <'
+Check if fly contain the cube 'abc'
+      '>
+     // Signature
+    'sig' [ [ [ [ [ '...' ] [ 'attr_0_min:DOUBLE' ] [ 'attr_0_max:DOUBLE' ] [ 'attr_0_name:STRING' ] [ 'filt_nb:DOUBLE' ] [ 'vol_id:STRING' ] ]  [ 'result:boolean' ] ] ] ]
+    'params' {
+      'vol_id' 'Fly id '
+      'crit_nb' 'number of input filter'
+      'attr_0_name' 'Attribut name of the filter 0'
+      'attr_0_max' 'Max value of the filter 0'
+      'attr_0_min' 'Min value of the filter 0'
+    }
+    // Examples
+    'examples' [ ]
+  } INFO
+
+  SAVE 'context' STORE
+
+// TODO, check the filter range to sort it in the good order (apply the shorter first!)
+
+  "num_vol" STORE // retrieve the fly number
+  // loop on filter
+  1 SWAP <%
+    "indexFilter" STORE // get index of filter
+    "POC_"  SWAP + "gts_name" STORE // init GTS name
+    DUP TYPEOF // get type of first param
+    "LIST" == // check if it is a liste
+    <% // the input parametre is a liste
+      [ ]  "index_LIST" STORE // list of messages index matching current filter
+      <%
+        "index" STORE // store the index on entry
+        [ $READ_TOKEN $gts_name { 'vol' $num_vol }  $index -1 ] FETCH // fetch the GTS entry with current index
+        MVVALUES 0 GET // get multi values
+        FLATTEN UNIQUE // flat with unique value
+        $index_LIST APPEND UNIQUE "index_LIST" STORE // append to list of index
+      %> FOREACH
+      $index_LIST ->SET // convert the list of message index to a SET
+    %>
+    <% // the input parameter is not a list. Min Max is waited!
+       "max_value" STORE // get max value of current filter
+       "min_value" STORE // get min value of current filter
+       [ $READ_TOKEN $gts_name { 'vol' $num_vol }  $max_value $max_value $min_value - 1 + ] FETCH // fetch the GTS with current filter
+       MVVALUES 0 GET // get multi values
+       FLATTEN UNIQUE ->SET // flat with unique value filter
+    %> IFTE // input parametre type test
+    $indexFilter 1 > <% $tmp_SET INTERSECTION "tmp_SET" STORE %> <% "tmp_SET" STORE %> IFTE   // store in tmp_SET the liste of meesage index matching the processed filters
+  %> FOR // boucle sur les attributs
+  $tmp_SET SIZE 0 >
+
+%> 'macro' STORE
+$macro

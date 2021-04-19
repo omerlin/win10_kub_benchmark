@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+ name: windows-exporter
+ namespace: monitoring
+ labels:
+   app: windows-exporter
+   release: prometheus
+spec:
+ type: ClusterIP
+ ports:
+ - name: metrics
+   port: 9182
+   targetPort: 9182

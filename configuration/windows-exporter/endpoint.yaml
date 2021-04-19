@@ -1,0 +1,15 @@
+kind: Endpoints
+apiVersion: v1
+metadata:
+ name: windows-exporter
+ namespace: monitoring
+ labels:
+   app: windows-exporter
+   release: prometheus
+subsets:
+ - addresses:
+     #This is an external address
+     - ip: 10.10.152.225
+   ports: 
+     - name: metrics
+       port: 9182
