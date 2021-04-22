@@ -42,5 +42,5 @@ for var in $(variables) ; do
   echo "export ${var}=${!var}"
 done
 
-echo $PATH | grep "\.:" || export PATH=.:${PATH}
+echo $PATH | grep "\.:" >/dev/null || (export PATH=.:${PATH} && echo "PATH modified")
 

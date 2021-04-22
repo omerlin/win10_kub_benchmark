@@ -2,13 +2,22 @@
 set -e
 bash checkEnv.sh
 
+silent=false
+if [ "$1" == "--silent" ] ; then
+  silent=true
+  shift
+fi
+
 nbTS=$1
 vol=$2
 tag=$3
 if [ $# -eq 0 ] ; then
-  echo Usage : fetchGTS.sh numberOfTimeStamps vol tag
-  echo curl -i -H "X-Warp10-Token: ${READ_TOKEN}" "${WARP_URL}/fetch?now=${FUTURE_DATE}&timespan=-${nbTS}&selector=~POC_${tag}.*%7Bvol~${vol}.*%7D&format=fulltext&dedup=false" 
-  exit
+  >&2 echo "Usage : fetchGTS.sh <--silent> numberOfTimeStamps <vol> <tag>"
+  exit 1
 fi
-curl -i -H "X-Warp10-Token: ${READ_TOKEN}" "${WARP_URL}/fetch?now=${FUTURE_DATE}&timespan=-${nbTS}&selector=~POC_${tag}.*%7Bvol~${vol}.*%7D&format=fulltext&dedup=false" 
+if ${silent} ; then
+  curl -i -H "X-Warp10-Token: ${READ_TOKEN}" "${WARP_URL}/fetch?now=${FUTURE_DATE}&timespan=-${nbTS}&selector=~POC_${tag}.*%7Bvol~${vol}.*%7D&format=fulltext&dedup=false" > /dev/null 
+else
+  curl -i -H "X-Warp10-Token: ${READ_TOKEN}" "${WARP_URL}/fetch?now=${FUTURE_DATE}&timespan=-${nbTS}&selector=~POC_${tag}.*%7Bvol~${vol}.*%7D&format=fulltext&dedup=false" 
+fi
 

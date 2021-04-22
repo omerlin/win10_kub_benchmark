@@ -1,7 +1,7 @@
 set -e
 bash checkEnv.sh
 startTime=$(date +%s%N)
-$@ >/dev/null 2>&1
+$@ 
 execTime=$((($(date +%s%N) - $startTime)/1000))
 now=$(($(date +%s%N)/1000))
 cmd=$1
