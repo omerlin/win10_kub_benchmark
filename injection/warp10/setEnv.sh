@@ -14,6 +14,10 @@ writeToken() {
   echo $writeToken
 }
 
+variables() {
+  echo "NAMESPACE GTS_DIR FUTURE_DATE SYNC_FILE BENCH_ENV READ_TOKEN WRITE_TOKEN"
+}
+
 # Inutile de changer ces valeurs
 export NAMESPACE=warpdemo
 export GTS_DIR=gts
@@ -22,9 +26,9 @@ export SYNC_FILE=syncfile.txt
 export WARP_URL="http://127.0.0.1:31080/warp10/api/v0" 
 
 # Utiliser une des valeurs WSL|KAST|K3S
-export BENCH_ENVIR=WSL
+export BENCH_ENV=WSL
 
-if [ "$BENCH_ENVIR" == KAST ] ; then
+if [ "${BENCH_ENV}" == KAST ] ; then
   # Définir les WarpTokens ici
   export READ_TOKEN=
   export WRITE_TOKEN=
@@ -33,6 +37,6 @@ else
   export WRITE_TOKEN=$(writeToken)
 fi
 
-for var in NAMESPACE GTS_DIR FUTURE_DATE SYNC_FILE BENCH_ENVIR READ_TOKEN WRITE_TOKEN ; do
-  echo $var=${!var}
+for var in $(variables) ; do
+  echo "export ${var}=${!var}"
 done
