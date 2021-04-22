@@ -18,7 +18,8 @@ writeToken() {
 export NAMESPACE=warpdemo
 export GTS_DIR=gts
 export FUTURE_DATE="2099-01-01T00%3A00%3A00.000Z"
-export SYNC_FILE=syncfile.txt 
+export SYNC_FILE=syncfile.txt
+export WARP_URL="http://127.0.0.1:31080/warp10/api/v0" 
 
 # Utiliser une des valeurs WSL|KAST|K3S
 export BENCH_ENVIR=WSL
