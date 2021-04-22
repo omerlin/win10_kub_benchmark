@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+bash checkEnv.sh
 
 nbTS=$1
 vol=$2

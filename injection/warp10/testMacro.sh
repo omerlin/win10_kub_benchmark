@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+bash checkEnv.sh
 if [ $# -ne 1 ] ; then
   echo missing label A/B/C
   exit
