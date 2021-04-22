@@ -1,0 +1,44 @@
+TODO
+
+deleteAllGTS.sh : supprime TOUTES les bases
+
+envir.sh : définit la liste des envvars
+- NAMESPACE
+- READ_TOKEN, WRITE_TOKEN
+- BENCH_ENVIR : WSL|KAST|K3S
+- GTS_DIR
+- FUTURE_DATE : date postérieure au moment du test = j+1: cf 2021-04-24T00%3A00%3A00.000Z
+- SYNC_FILE : créé à la fin 
+
+
+Pré-requis
+
+- base warp10 vide
+- fichiers gts 800 à 999* dans le répertoire gts
+
+
+Scénarii
+
+A Tests de perf
+
+1. Injection + fetch : 800 à 999
+
+perf1.sh : détruit le SYNC_FILE et lance en // injectAllGTS.sh et fetchAllGTS.sh (avec measure.sh)
+
+fetchAllGTS : boucle sur vols random (800..999), random tag (A..C), tous les moments : measure.sh fetchGTS.sh. S'arrête sur détection du SYNC_FILE
+
+2. Macro + fetch 
+prérequis : scenario 1 terminé (base pleine sinon erreur de macro)
+SYNC_FILE supprimé
+
+En // :
+- master.sh : créé un fichier SYNC_FILE au bout de X minutes
+- fetchAllGTS.sh x 10 threads
+- testAllMacro.sh random(A..C) x 10 threads, même condition d'arrêt
+
+B. Vieillissement
+
+Scénario 2 sur 8 heures
+
+
+
