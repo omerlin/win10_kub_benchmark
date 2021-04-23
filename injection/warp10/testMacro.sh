@@ -1,13 +1,24 @@
-#!/bin/bash
-if [ $# -ne 1 ] ; then
-  echo missing label A/B/C
-  exit
+vars="silent tag"
+silent=true
+
+for arg in $* ; do
+  argName=$(echo ${arg} | sed 's/--//g' | cut -f1 -d=)
+  argValue=$(echo $arg | sed 's/--//g' | cut -f2 -d=)
+  echo ${vars} | grep ${argName} >/dev/null && export ${argName}=${argValue}
+done
+
+if [ -z ${tag} ] ; then
+  echo missing tag A/B/C
+  exit 1
 fi
-if [ ! -f ./testMod${1}.mc2 ] ; then
-  echo ./testMod${1}.mc2 not found
-  exit
+if [ ! -f ./testMod${tag}.mc2 ] ; then
+  echo ./testMod${tag}.mc2 not found
+  exit 1
 fi
-POD=$(kubectl -n warpdemo get pod -o custom-columns=:metadata.name)
-tokens=$(kubectl -n warpdemo exec -ti $POD -- cat /data/warp10/etc/initial.tokens)
-readToken=$(echo $tokens | sed -e 's/.*{"read":{"token":"//g' -e 's/".*//g')
-sed "s/readToken/$readToken/g" ./testMod${1}.mc2 | curl -i -T - -H 'Transfer-Encoding: chunked' 'http://127.0.0.1:31080/warp10/api/v0/exec'
+
+if ${silent} ; then
+  sed "s/readToken/${READ_TOKEN}/g" ./testMod${tag}.mc2 | curl -i -T - -H 'Transfer-Encoding: chunked' ${WARP_URL}/exec > /dev/null
+else
+  sed "s/readToken/${READ_TOKEN}/g" ./testMod${tag}.mc2 | curl -i -T - -H 'Transfer-Encoding: chunked' ${WARP_URL}/exec
+fi
+

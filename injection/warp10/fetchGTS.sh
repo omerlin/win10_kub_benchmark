@@ -1,15 +1,29 @@
 #!/bin/bash
-POD=$(kubectl -n warpdemo get pod -o custom-columns=:metadata.name)
-tokens=$(kubectl -n warpdemo exec -ti $POD -- cat /data/warp10/etc/initial.tokens)
-readToken=$(echo $tokens | sed -e 's/.*{"read":{"token":"//g' -e 's/".*//g')
+set -e
+bash ./checkEnv.sh
 
-nbTS=$1
-vol=$2
-tag=$3
-if [ $# -eq 0 ] ; then
-  echo Usage : getchGTS.sh numberOfTimeStamps vol tag
-  echo curl -i -H "X-Warp10-Token: $readToken" "http://localhost:31080/warp10/api/v0/fetch?now=2021-04-16T00%3A00%3A00.000Z&timespan=-${nbTS}&selector=~POC_${tag}.*%7Bvol~${vol}.*%7D&format=fulltext&dedup=false" 
-  exit
+vars="silent start stop vol tag"
+
+start=0
+stop=999999
+silent=true
+vol=""
+tag=""
+
+for arg in $* ; do
+  argName=$(echo ${arg} | sed 's/--//g' | cut -f1 -d=)
+  argValue=$(echo $arg | sed 's/--//g' | cut -f2 -d=)
+  echo ${vars} | grep ${argName} >/dev/null && export ${argName}=${argValue}
+done
+
+start="1970-01-01T00:00:00.$(printf '%06d' $start)Z"
+stop="1970-01-01T00:00:00.$(printf '%06d' $stop)Z"
+
+command="curl -i -H X-Warp10-Token:${READ_TOKEN} ${WARP_URL}/fetch?start=${start}&stop=${stop}&selector=~POC_${tag}.*%7Bvol~${vol}.*%7D&format=fulltext&dedup=false"
+if ${silent} ; then
+  ${command} > /dev/null 
+else
+  echo "Running ${command}" 
+  ${command} 
 fi
-curl -i -H "X-Warp10-Token: $readToken" "http://localhost:31080/warp10/api/v0/fetch?now=2021-04-16T00%3A00%3A00.000Z&timespan=-${nbTS}&selector=~POC_${tag}.*%7Bvol~${vol}.*%7D&format=fulltext&dedup=false" 
 
