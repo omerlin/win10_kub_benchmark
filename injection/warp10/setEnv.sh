@@ -44,3 +44,5 @@ done
 
 echo $PATH | grep "\.:" >/dev/null || (export PATH=.:${PATH} && echo "PATH modified")
 
+chmod u+x *.sh
+

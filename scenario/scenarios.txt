@@ -7,7 +7,6 @@ envir.sh : définit la liste des envvars
 - READ_TOKEN, WRITE_TOKEN
 - BENCH_ENVIR : WSL|KAST|K3S
 - GTS_DIR
-- FUTURE_DATE : date postérieure au moment du test = j+1: cf 2021-04-24T00%3A00%3A00.000Z
 - SYNC_FILE : créé à la fin 
 
 
