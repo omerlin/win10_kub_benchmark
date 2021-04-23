@@ -2,6 +2,10 @@
 set -e
 bash ./checkEnv.sh
 
+# Kill pending sleep
+(ps | grep -v grep | grep sleep ) && (echo "there are pending sleep"; exit 1)
+
+# Delete the bench TS
 curl -H "X-Warp10-Token:${WRITE_TOKEN}" "${WARP_URL}/delete?deleteall&selector=K8S_BENCH%7B%7D"  
 
 rm -rf ${SYNC_FILE}
