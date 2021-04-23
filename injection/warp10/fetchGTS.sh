@@ -6,7 +6,7 @@ vars="silent start stop vol tag"
 
 start=0
 stop=999999
-silent=false
+silent=true
 vol=""
 tag=""
 

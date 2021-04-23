@@ -7,7 +7,7 @@ randomTag() {
 
 randomVol() {
   echo $((800+$(($RANDOM % 200))))
-}
+} 
 
 randomMission() {
   echo $((1+$(($RANDOM % 8))))
@@ -17,4 +17,9 @@ randomMission() {
 set -e
 bash checkEnv.sh
 
-bash measure.sh fetchGTS.sh --vol=$(randomVol)_$(randomMission) --tag=$(randomTag) 
+while [ ! -f ${SYNC_FILE} ] ; do
+  bash measure.sh fetchGTS.sh --vol=$(randomVol)_$(randomMission) --tag=$(randomTag)
+done
+
+echo "${SYNC_FILE} detected, stopping $0"
+ 

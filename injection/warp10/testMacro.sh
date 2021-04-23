@@ -1,5 +1,5 @@
 vars="silent tag"
-silent=false
+silent=true
 
 for arg in $* ; do
   argName=$(echo ${arg} | sed 's/--//g' | cut -f1 -d=)

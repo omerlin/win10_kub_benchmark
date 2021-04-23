@@ -8,4 +8,9 @@ randomTag() {
 set -e
 bash checkEnv.sh
 
-bash measure.sh testMacro.sh --tag=$(randomTag) 
+while [ ! -f ${SYNC_FILE} ] ; do
+  bash measure.sh testMacro.sh --tag=$(randomTag)
+done
+
+echo "${SYNC_FILE} detected, stopping $0"
+ 
