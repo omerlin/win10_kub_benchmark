@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-bash checkEnv.sh
+bash ./checkEnv.sh
 
 vars="silent start stop vol tag"
 

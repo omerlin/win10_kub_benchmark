@@ -15,10 +15,10 @@ randomMission() {
 
 
 set -e
-bash checkEnv.sh
+bash ./checkEnv.sh
 
 while [ ! -f ${SYNC_FILE} ] ; do
-  bash measure.sh fetchGTS.sh --vol=$(randomVol)_$(randomMission) --tag=$(randomTag)
+  bash ./measure.sh ./fetchGTS.sh --vol=$(randomVol)_$(randomMission) --tag=$(randomTag)
 done
 
 echo "${SYNC_FILE} detected, stopping $0"
