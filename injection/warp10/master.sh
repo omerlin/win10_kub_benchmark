@@ -35,7 +35,7 @@ read foo
 ${clean} && (curl -H "X-Warp10-Token:${WRITE_TOKEN}" "${WARP_URL}/delete?deleteall&selector=K8S_BENCH%7B%7D")
 
 rm -rf ${SYNC_FILE}
-(sleep ${duration}; touch ${SYNC_FILE}) &
+(sleep ${duration}; touch ${SYNC_FILE}; echo "End of test!") &
 
 for i in $(seq 1 ${nbProcess}); do
   ${fetch} && (nohup bash ./measure.sh ./randomFetch.sh > fetch_${i}.log &)

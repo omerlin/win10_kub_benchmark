@@ -25,7 +25,7 @@ export SYNC_FILE=syncfile.txt
 export WARP_URL="http://127.0.0.1:31080/warp10/api/v0" 
 
 # Utiliser une des valeurs WSL|KAST|K3S
-export BENCH_ENV=WSL_LINUX_CURL
+export BENCH_ENV=WSL
 
 if [ "${BENCH_ENV}" == KAST ] ; then
   # D�finir les WarpTokens ici
