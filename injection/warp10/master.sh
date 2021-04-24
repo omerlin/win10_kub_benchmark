@@ -1,12 +1,11 @@
 #!/bin/bash
 
-vars="testName nbProcess fetch macro"
+vars="duration testName nbProcess fetch macro"
 
 duration=3600
 nbProcess=3
 fetch=true
 macro=true
-help=false
 testName="undefined"
 
 for arg in $* ; do
@@ -15,10 +14,8 @@ for arg in $* ; do
   echo ${vars} | grep ${argName} >/dev/null && export ${argName}=${argValue}
 done
 
-if [ ${help} ] ; then
-  echo "Usage : master.sh <--testName='testName'> <--nbProcess=X> <--fetch=true|false> <--macro=true|false> <--duration=SSSS>"	
-  exit 0
-fi
+(echo $@ | grep "help") && (echo "Usage : master.sh <--testName='testName'> <--nbProcess=X> <--fetch=true|false> <--macro=true|false> <--duration=SSSS>"; exit 0)
+
 set -e
 bash ./checkEnv.sh
 
