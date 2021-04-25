@@ -1,5 +1,5 @@
 set -e
-bash ./checkEnv.sh
+#bash ./checkEnv.sh
 startTime=$(date +%s%N)
 $@ 
 execTime=$((($(date +%s%N) - $startTime)/1000))
