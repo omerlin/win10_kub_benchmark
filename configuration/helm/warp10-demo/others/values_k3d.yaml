@@ -95,4 +95,4 @@ tolerations:
 
 affinity: {}
 
-storageClass: local-path
+storageClassName: local-path
