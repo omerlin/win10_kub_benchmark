@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS__VICTORIAMETRICS",
-      "label": " VictoriaMetrics",
+      "name": "prometheus",
+      "label": " prometheus",
       "description": "",
       "type": "datasource",
       "pluginId": "prometheus",
@@ -96,7 +96,7 @@
   "panels": [
     {
       "collapsed": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -110,7 +110,7 @@
     },
     {
       "columns": [],
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -511,7 +511,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "decimals": 1,
       "fieldConfig": {
         "defaults": {
@@ -624,7 +624,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -735,7 +735,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -889,7 +889,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -1044,7 +1044,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -1195,7 +1195,7 @@
     },
     {
       "collapsed": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1218,7 +1218,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "decimals": 0,
       "description": "",
       "fieldConfig": {
@@ -1312,7 +1312,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1393,7 +1393,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1467,7 +1467,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -1590,7 +1590,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "decimals": null,
       "fieldConfig": {
         "defaults": {
@@ -1707,7 +1707,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "decimals": 0,
       "description": "",
       "fieldConfig": {
@@ -1802,7 +1802,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "decimals": null,
       "fieldConfig": {
         "defaults": {
@@ -1890,7 +1890,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "decimals": 1,
       "description": "",
       "fieldConfig": {
@@ -1981,7 +1981,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "decimals": 1,
       "fieldConfig": {
         "defaults": {
@@ -2095,7 +2095,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "decimals": 2,
       "fieldConfig": {
         "defaults": {
@@ -2288,7 +2288,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -2446,7 +2446,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -2599,7 +2599,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -2751,7 +2751,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -2901,7 +2901,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "decimals": 2,
       "fieldConfig": {
         "defaults": {
@@ -3001,7 +3001,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -3150,7 +3150,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -3271,7 +3271,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS__VICTORIAMETRICS}",
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -3400,7 +3400,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS__VICTORIAMETRICS}",
+        "datasource": "Prometheus",
         "definition": "label_values(windows_cs_hostname, job)",
         "hide": 0,
         "includeAll": false,
@@ -3422,7 +3422,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS__VICTORIAMETRICS}",
+        "datasource": "Prometheus",
         "definition": "label_values(windows_cs_hostname{job=~\"$job\"}, hostname)",
         "hide": 0,
         "includeAll": true,
@@ -3444,7 +3444,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS__VICTORIAMETRICS}",
+        "datasource": "Prometheus",
         "definition": "label_values(windows_cs_hostname{job=~\"$job\",hostname=~\"$hostname\"}, instance)",
         "hide": 0,
         "includeAll": false,
@@ -3466,7 +3466,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS__VICTORIAMETRICS}",
+        "datasource": "Prometheus",
         "definition": "label_values(windows_cs_hostname{job=~\"$job\",instance=~\"$instance\"}, hostname)",
         "hide": 2,
         "includeAll": false,
