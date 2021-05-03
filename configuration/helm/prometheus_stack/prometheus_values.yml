@@ -607,6 +607,10 @@ grafana:
 
   adminPassword: admin
 
+  # Because of https://github.com/ovh/ovh-warp10-datasource/issues/71
+  grafana.ini:
+    x_content_type_options: false
+
   plugins:
     - ovh-warp10-datasource
 
