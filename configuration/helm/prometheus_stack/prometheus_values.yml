@@ -607,6 +607,9 @@ grafana:
 
   adminPassword: admin
 
+  plugins:
+    - ovh-warp10-datasource
+
   ingress:
     ## If true, Grafana Ingress will be created
     ##
