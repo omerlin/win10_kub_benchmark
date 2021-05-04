@@ -38,6 +38,7 @@ rm -rf ${SYNC_FILE}
 (sleep ${duration}; touch ${SYNC_FILE}; echo "End of test!") &
 
 for i in $(seq 1 ${nbProcess}); do
+  export PROCESS_NB=$i
   ${fetch} && (nohup bash ./measure.sh ./randomFetch.sh > fetch_${i}.log &)
   ${macro} && (nohup bash ./measure.sh ./randomMacro.sh > macro_${i}.log &) 
 done

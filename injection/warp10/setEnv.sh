@@ -15,14 +15,15 @@ writeToken() {
 }
 
 variables() {
-  echo "NAMESPACE GTS_DIR FUTURE_DATE SYNC_FILE BENCH_ENV READ_TOKEN WRITE_TOKEN"
+  echo "NAMESPACE GTS_DIR SYNC_FILE BENCH_ENV READ_TOKEN WRITE_TOKEN PORT"
 }
 
 # Inutile de changer ces valeurs
 export NAMESPACE=warpdemo
 export GTS_DIR=gts
 export SYNC_FILE=syncfile.txt
-export WARP_URL="http://127.0.0.1:31080/warp10/api/v0" 
+export PORT=31080
+export WARP_URL="http://127.0.0.1:${PORT}/warp10/api/v0" 
 
 # Utiliser une des valeurs WSL|KAST|K3S
 export BENCH_ENV=KAST_VM
